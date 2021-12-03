@@ -44,5 +44,25 @@ public class Excercises {
 
 	}
 
+	public static int exercise2a(List<String> positions) {
+		
+		int depth = 0;
+		int horizontalPosition = 0;
+		
+		for(String position : positions) {
+			
+			if(position.contains("up")) {
+				depth = depth - Integer.valueOf(position.substring(position.length() -1));
+			} else if(position.contains("down")) {
+				depth = depth + Integer.valueOf(position.substring(position.length() -1));
+			} else {
+				horizontalPosition = horizontalPosition + Integer.valueOf(position.substring(position.length() -1));
+			}
+		}
+		
+		return horizontalPosition * depth;
+		
+	}
+
 
 }

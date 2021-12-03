@@ -10,21 +10,21 @@ public class Main {
 
 	public static void main( String[] args ) throws IOException{
 
-		String path = "inputs/input1.txt";
+		String path = "inputs/input2.txt";
 		BufferedReader reader;
 
-		List<Integer> numbers = new ArrayList<>();
+		List<String> input = new ArrayList<>();
 
 		try {
 			reader = new BufferedReader(new FileReader(path));
 			String line = reader.readLine();
 			while (line != null) {
-				numbers.add(Integer.parseInt(line));
+				input.add(line);
 				line = reader.readLine();
 			}
 			reader.close();
 
-			System.out.print(Excercises.exercise1b(numbers));
+			System.out.print(Excercises.exercise2a(input));
 
 		} catch (IOException e) {
 			e.printStackTrace();
