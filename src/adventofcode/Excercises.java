@@ -2,6 +2,7 @@ package adventofcode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Excercises {
@@ -142,7 +143,11 @@ public class Excercises {
 	}
 
 
-
+	public static int exercise4a(List<String> input, Map<String, List<String>> boards) {
+		return 0;
+		
+		
+	}
 
 
 }
