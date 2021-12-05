@@ -10,7 +10,7 @@ public class Main {
 
 	public static void main( String[] args ) throws IOException{
 
-		String path = "inputs/input2.txt";
+		String path = "inputs/input3.txt";
 		BufferedReader reader;
 
 		List<String> input = new ArrayList<>();
@@ -24,7 +24,7 @@ public class Main {
 			}
 			reader.close();
 
-			System.out.print(Excercises.exercise2a(input));
+			System.out.print(Excercises.exercise3b(input));
 
 		} catch (IOException e) {
 			e.printStackTrace();
