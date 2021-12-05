@@ -15,14 +15,14 @@ public class Main {
 		String path = "inputs/input4.txt";
 		BufferedReader reader;
 
-		List<String> numbers = new ArrayList<>();
+		String numbers = "";
 		Map<String, List<String>> boards = new HashMap<>();
 		
 
 		try {
 			reader = new BufferedReader(new FileReader(path));
 			String line = reader.readLine();
-			numbers.add(line);
+			numbers+=line;
 			
 			System.out.println(numbers);
 			
@@ -49,7 +49,7 @@ public class Main {
 			
 			reader.close();
 
-			System.out.print(Excercises.exercise4a(numbers, boards));
+			//System.out.print(Excercises.exercise4a(numbers, boards));
 
 		} catch (IOException e) {
 			e.printStackTrace();

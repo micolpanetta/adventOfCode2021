@@ -143,7 +143,7 @@ public class Excercises {
 	}
 
 
-	public static int exercise4a(List<String> input, Map<String, List<String>> boards) {
+	public static int exercise4a(String numbers, Map<String, List<String>> boards) {
 		return 0;
 		
 		
