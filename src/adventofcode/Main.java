@@ -24,7 +24,7 @@ public class Main {
 			String line = reader.readLine();
 			numbers+=line;
 			
-			System.out.println(numbers);
+			//System.out.println(numbers);
 			
 			reader.readLine();
 			line = reader.readLine();
@@ -40,7 +40,7 @@ public class Main {
 				}
 				boards.put(String.valueOf(i), rows);
 				
-				System.out.println(i + " " + boards.get(String.valueOf(i)).toString());
+				//System.out.println(i + " " + boards.get(String.valueOf(i)).toString());
 				i++;
 				
 				line = reader.readLine();
@@ -49,7 +49,7 @@ public class Main {
 			
 			reader.close();
 
-			//System.out.print(Excercises.exercise4a(numbers, boards));
+			System.out.println(Excercises.exercise4b(numbers, boards, boards.size(), 5, 5));
 
 		} catch (IOException e) {
 			e.printStackTrace();
