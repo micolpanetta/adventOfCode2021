@@ -1,6 +1,7 @@
 package adventofcode;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -162,18 +163,18 @@ public class Excercises {
 							boards[board][row][col] = - 1;
 					}
 				}
-				
-				if(boardIsWinner(boards[board]))
-					return getBoardUnsignedNumbersSum(boards[board]) * extracted;
+
+				if(Utils.boardIsWinner(boards[board]))
+					return Utils.getBoardUnsignedNumbersSum(boards[board]) * extracted;
 			}
 		}
 		return 0;
 	}
-	
+
 	public static int exercise4b(String numbers, Map<String, List<String>> inputBoards, int boardsNumber, int rowsNumber, int colsNumber) {
 
 		List<int[][]> boardsList = new ArrayList<>();
-		
+
 		int [][][] boards = new int[boardsNumber][rowsNumber][colsNumber];
 
 		for(int board = 0; board < boardsNumber; board++) 
@@ -182,80 +183,35 @@ public class Excercises {
 					boards[board][row][col] = Integer.valueOf(inputBoards.get(String.valueOf(board)).get(row).replaceAll("( +)"," ").trim().split(" ")[col]);
 
 		for(int board = 0; board < boardsNumber; board++) 
-			boardsList.add(boards[board]);
+			Collections.addAll(boardsList, boards[board]);
+
+		List<int[][]> controlList = new ArrayList<>(boardsList);
 		
 		for(String number : numbers.split(",")) {
 
 			int extracted = Integer.parseInt(number);
 
-			for(int[][] board : boardsList) {
+			for(int i = 0; i < boardsList.size(); i++) {
 				for(int row = 0; row < rowsNumber; row++) {
 					for(int col = 0; col < colsNumber; col++) {
 
-						if(board[row][col] == extracted) 
-							board[row][col] = - 1;
+						if(boardsList.get(i)[row][col] == extracted) 
+							boardsList.get(i)[row][col] = - 1;
 					}
-				}
-				
-				if(boardIsWinner(board)) {
-					boardsList.remove(board);
-					
-				if(boardsList.isEmpty())
-						return getBoardUnsignedNumbersSum(boardsList.get(0)) * extracted;
+
+					int[][] lastBoard = boardsList.get(i);
+
+					if(Utils.boardIsWinner(lastBoard)) {
+						controlList.remove(lastBoard);
+
+						if(controlList.isEmpty())
+							return Utils.getBoardUnsignedNumbersSum(lastBoard) * extracted;
+					}
 				}
 			}
 		}
 
 		return 0;
 	}
-
-	private static int getBoardUnsignedNumbersSum(int[][] winnerBoard) {
-		int counter = 0;
-		
-		for (int i = 0; i < winnerBoard.length; i++) {
-			for (int j = 0; j < winnerBoard[0].length; j++) {
-				if(winnerBoard[i][j] != -1)
-					counter = counter + winnerBoard[i][j];
-			}
-		}
-		return counter;
-	}
-
-	private static boolean boardIsWinner(int[][] board) {
-		//righe
-		for(int i = 0; i < board.length; i++) {
-			if(allElementsAreSigned(board[i])) {
-				return true;
-			}
-		}
-		//colonne
-		for(int j = 0; j < board[0].length; j++) {
-			if(allElementsAreSigned(board, j)) {
-				return true;
-			}
-		}
-		
-		return false;
-	}
-
-	private static boolean allElementsAreSigned(int[][] board, int j) {
-
-		for(int i = 0; i < board.length; i++)
-			if(board[i][j] != -1)
-				return false;
-		
-		return true;
-				
-	}
-
-	private static boolean allElementsAreSigned(int[] row) {
-		int counter = 0;
-		for(int i = 0; i < row.length; i++)
-			if(row[i] == -1)
-				counter++;
-			
-		return (counter == row.length);
-	}
-
 
 }
