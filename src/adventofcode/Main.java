@@ -4,52 +4,38 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Main {
 
 	public static void main( String[] args ) throws IOException{
 
-		String path = "inputs/input4.txt";
+		String path = "inputs/input5.txt";
 		BufferedReader reader;
 
-		String numbers = "";
-		Map<String, List<String>> boards = new HashMap<>();
-		
-
+		List<List<Integer>> coordinatesList = new ArrayList<>();
+		List<Integer> coordinates = new ArrayList<>();
 		try {
 			reader = new BufferedReader(new FileReader(path));
 			String line = reader.readLine();
-			numbers+=line;
-			
-			//System.out.println(numbers);
-			
-			reader.readLine();
-			line = reader.readLine();
-			
-			int i = 0;
-			
+		
 			while (line != null) {
-				List<String> rows = new ArrayList<>();
 				
-				while(!"-".equals(line)) {
-					rows.add(line);
-					line = reader.readLine();
-				}
-				boards.put(String.valueOf(i), rows);
+				String[] row = line.split(",");
 				
-				//System.out.println(i + " " + boards.get(String.valueOf(i)).toString());
-				i++;
+				for(String c : row)
+					coordinates.add(Integer.parseInt(c));
+					
+				coordinatesList.add(coordinates);
 				
+				coordinates = new ArrayList<>();
 				line = reader.readLine();
-				
+						
 			}
 			
 			reader.close();
 
-			System.out.println(Excercises.exercise4b(numbers, boards, boards.size(), 5, 5));
+			System.out.println(Excercises.exercise5a(coordinatesList));
 
 		} catch (IOException e) {
 			e.printStackTrace();
