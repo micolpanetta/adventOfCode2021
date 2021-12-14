@@ -10,11 +10,10 @@ public class Main {
 
 	public static void main( String[] args ) throws IOException{
 
-		String path = "inputs/input5.txt";
+		String path = "inputs/input6.txt";
 		BufferedReader reader;
 
-		List<List<Integer>> coordinatesList = new ArrayList<>();
-		List<Integer> coordinates = new ArrayList<>();
+		List<Integer> timerList = new ArrayList<>();
 		try {
 			reader = new BufferedReader(new FileReader(path));
 			String line = reader.readLine();
@@ -24,18 +23,15 @@ public class Main {
 				String[] row = line.split(",");
 				
 				for(String c : row)
-					coordinates.add(Integer.parseInt(c));
+					timerList.add(Integer.parseInt(c));
 					
-				coordinatesList.add(coordinates);
-				
-				coordinates = new ArrayList<>();
 				line = reader.readLine();
 						
 			}
 			
 			reader.close();
 
-			System.out.println(Excercises.exercise5b(coordinatesList));
+			System.out.println(Excercises.exercise6a(timerList));
 
 		} catch (IOException e) {
 			e.printStackTrace();

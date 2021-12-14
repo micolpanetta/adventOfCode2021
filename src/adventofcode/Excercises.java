@@ -366,4 +366,46 @@ public class Excercises {
 
 		return counter;
 	}
+
+	public static int exercise6a(List<Integer> timerList) {
+
+		List<Integer> newTimerList = new ArrayList<>();
+
+		for(int j = 0; j < 80; j++) {
+
+			int sixFromSeven = 0;
+			int sixCounter = 0;
+
+			for(int i = 0; i < timerList.size(); i++) {
+
+				if(timerList.get(i) > 0 && timerList.get(i) < 9) {
+
+					if(timerList.get(i).equals(7))
+						sixFromSeven++;
+
+					newTimerList.add(timerList.get(i) - 1);
+				}
+
+				if(timerList.get(i).equals(0))
+					newTimerList.add(6);
+			}
+
+			for(Integer i : newTimerList)
+				if(i.equals(6))
+					sixCounter++;
+
+			for(int i = 0; i < sixCounter - sixFromSeven; i++)
+				newTimerList.add(8);
+
+			timerList = new ArrayList<>();
+			timerList.addAll(newTimerList);
+			newTimerList = new ArrayList<>();
+
+			//System.out.println(timerList.toString());
+		}
+
+		return timerList.size();//somma di tutti i numeri di una lista -> timerList.stream().reduce(0, Integer::sum);
+	}
+
+
 }
