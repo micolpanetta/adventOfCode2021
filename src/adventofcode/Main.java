@@ -35,7 +35,7 @@ public class Main {
 			
 			reader.close();
 
-			System.out.println(Excercises.exercise5a(coordinatesList));
+			System.out.println(Excercises.exercise5b(coordinatesList));
 
 		} catch (IOException e) {
 			e.printStackTrace();

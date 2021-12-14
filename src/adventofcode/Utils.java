@@ -94,4 +94,28 @@ public class Utils {
 
 		return (counter == row.length);
 	}
+	
+	public static int getMax(List<Integer> coordinates) {
+		Integer found = 0;
+
+		for(Integer i : coordinates)
+			if(i > found)
+				found = i;
+
+		return found;
+	}
+	
+	public static boolean isMainDiagonal(Integer x1, Integer x2, Integer y1, Integer y2) {
+
+		return (x1 > x2 && y1 > y2) || (x1 < x2 && y1 < y2);
+	}
+
+	public static void printMatrix(int[][] matrix) {
+		for(int i = 0; i < matrix.length; i ++) {
+			for(int j = 0; j < matrix[i].length; j++)
+				System.out.print(matrix[i][j] + " ");
+			System.out.println();
+		}
+
+	}
 }

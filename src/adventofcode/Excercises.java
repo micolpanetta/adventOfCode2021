@@ -232,72 +232,138 @@ public class Excercises {
 			ordinate.add(y2);
 		}
 
-
-		int maxX = getMax(ascisse) + 1;
-		int maxY = getMax(ordinate) + 1;
+		int maxX = Utils.getMax(ascisse) + 1;
+		int maxY = Utils.getMax(ordinate) + 1;
 
 		int[][] matrix = new int[maxY][maxX];
-		
-		
+
+
 		for(List<Integer> coordinates : coordinatesList) {
 
 			Integer x1 = coordinates.get(0);
 			Integer y1 = coordinates.get(1);
 			Integer x2 = coordinates.get(2);
 			Integer y2 = coordinates.get(3);
-		
+
 			if(x1.equals(x2)) {
-				
+
 				int from = y1 < y2 ? y1 : y2;
 				int to = y1 > y2 ? y1 : y2;
-			
+
 				for(int y = from; y <= to; y++)
 					matrix[y][x1] ++;
-
 			}
-			
+
 			if(y1.equals(y2)) {
-				
+
 				int from = x1 < x2 ? x1 : x2;
 				int to = x1 > x2 ? x1 : x2;
-			
+
 				for(int x = from; x <= to; x++)
 					matrix[y1][x] ++;
-
 			}
-			
 		}
-		
+
 		int counter = 0;
-		
+
 		for(int i = 0; i < matrix.length; i ++)
 			for(int j = 0; j < matrix[i].length; j++)
 				if(matrix[i][j] > 1)
 					counter++;
 
-//		for(int i = 0; i < matrix.length; i ++) {
-//			
-//			for(int j = 0; j < matrix[i].length; j++) {
-//			
-//				System.out.print(matrix[i][j] + " ");
-//			
-//			}
-//			System.out.println();
-//			
-//		}
-//		
+		//		for(int i = 0; i < matrix.length; i ++) {
+		//			for(int j = 0; j < matrix[i].length; j++)
+		//				System.out.print(matrix[i][j] + " ");
+		//			System.out.println();
+		//		}
+
 		return counter;
 	}
 
+	public static int exercise5b(List<List<Integer>> coordinatesList) {
 
-	private static int getMax(List<Integer> coordinates) {
-		Integer found = 0;
+		List<Integer> ascisse = new ArrayList<>();
+		List<Integer> ordinate = new ArrayList<>();
 
-		for(Integer i : coordinates)
-			if(i > found)
-				found = i;
+		for(List<Integer> coordinates : coordinatesList) {
 
-		return found;
+			Integer x1 = coordinates.get(0);
+			Integer y1 = coordinates.get(1);
+			Integer x2 = coordinates.get(2);
+			Integer y2 = coordinates.get(3);
+
+			ascisse.add(x1);
+			ascisse.add(x2);
+			ordinate.add(y1);
+			ordinate.add(y2);
+		}
+
+		int maxX = Utils.getMax(ascisse) + 1;
+		int maxY = Utils.getMax(ordinate) + 1;
+
+		int[][] matrix = new int[maxY][maxX];
+
+
+		for(List<Integer> coordinates : coordinatesList) {
+
+			Integer x1 = coordinates.get(0);
+			Integer y1 = coordinates.get(1);
+			Integer x2 = coordinates.get(2);
+			Integer y2 = coordinates.get(3);
+
+			if(x1.equals(x2)) {
+
+				int from = y1 < y2 ? y1 : y2;
+				int to = y1 > y2 ? y1 : y2;
+
+				for(int y = from; y <= to; y++)
+					matrix[y][x1] ++;
+
+			} else if(y1.equals(y2)) {
+
+				int from = x1 < x2 ? x1 : x2;
+				int to = x1 > x2 ? x1 : x2;
+
+				for(int x = from; x <= to; x++)
+					matrix[y1][x] ++;
+
+			} else {
+
+				if(Utils.isMainDiagonal(x1,x2,y1,y2)) {
+					int from = x1 < x2 ? x1 : x2;
+					int to = x1 > x2 ? x1 : x2;
+
+					int y = y1 < y2 ? y1 : y2;
+
+					for(int x = from; x <= to; x++) {
+						matrix[y][x] ++;
+						y++;
+					}
+
+				} else {
+
+					int from = x1 < x2 ? x1 : x2;
+					int to = x1 > x2 ? x1 : x2;
+
+					int y = y1 > y2 ? y1 : y2;
+
+					for(int x = from; x <= to; x++) {
+						matrix[y][x] ++;
+						y--;
+					}
+				}	
+			}
+		}
+
+		//Utils.printMatrix(matrix);
+
+		int counter = 0;
+
+		for(int i = 0; i < matrix.length; i ++)
+			for(int j = 0; j < matrix[i].length; j++)
+				if(matrix[i][j] > 1)
+					counter++;
+
+		return counter;
 	}
-
 }
